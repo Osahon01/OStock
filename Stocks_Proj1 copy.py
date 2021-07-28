@@ -34,7 +34,7 @@ def get_current_price(symbol):
         
         print("Please type the price you paid for the stock; express it as an integer value")         
         b_price = input()
-        c_price = y_fin.Ticker(symbol2).info()
+        c_price = y_fin.Ticker(symbol2).info['currentPrice']
         g_l=(float(c_price) - float(b_price))
         
         if float(c_price) < float(b_price):
@@ -46,69 +46,41 @@ def get_current_price(symbol):
 
 
 
-    print(" \n Should I buy? [run/skip]: ")
+    print("\n3. Should I invest? [run/skip]: ")
     response = input()
     if response=="run":
         print("Please type in the symbol of the company: ")  
         symbol3 = input()
-        
-        b_price = input()
-        c_price = y_fin.Ticker(symbol3).info[]
-        if float(c_price) < float(b_price):
-             print("OStock-bot advises you to either closely monitor this stock or consider buying the dip")
+        #print(y_fin.Ticker(symbol3).info)
+        per_change = y_fin.Ticker(symbol3).info['revenueGrowth']
+        if float(per_change) < 2:
+             print("OStock-bot does not advise buying this stock at the moment. {}".format(per_change))
         else:
              print("OStock-bot advises you to sell to secure a profit, or allow the stock to continue to grow")            
     elif response=='skip':
         print()
 
-    '''
-    if input('Should I sell?'):
-         symbol = input()
-         test2 = get_current_price(symbol)
-         print(test2)
-         print("Please type the price you paid for the stock; express it as an integer value")         
-         test1 = input("Price: ")
-         print(test1, test2)
-         print("testing...")
-         if int(test1) > int(test2):
-         else:
-    '''             
-    '''          
-    if input('Should I buy?'):
-         print("Please type in the symbol for the stock you are inquiring about")
-         blue=(input())
-         ticker2 = y_fin.Ticker(blue)
-
-         print('ticker2.info')
-    '''
-    '''
-       #  print(blue)
-         if blue.loc[:,"% Change"] > 10:
-            print("OStock-bot advises you to invest in this stock")
-         else:
-           print("OStock-bot advises you to not invest in this stock")        
-    '''
-    '''
-    print("Want more! \n Check out what's going on in the stock market today! \n Please press 'enter' to skip a command, or press any letter to run a command")
-    print("Commands: \n Current winnings \n Current losses \n Should I sell? \n Should I buy?")
-    
-    
-    print("\n 4. Top stock gainers :)")
-    win=stock_info.get_day_gainers()
-    w_vals=win.loc[:,"% Change"]
-    w_name=win.loc[:,"Symbol"]
-    if input("Current winnings"):
+          print("\n 4. Top stock gainers :) [run/skip]")
+    response=input()
+    if response=="run":
+        win=stock_info.get_day_gainers()
+        w_vals=win.loc[:,"% Change"]
+        w_name=win.loc[:,"Symbol"]
+        print("\nCurrent winnings")
         print("Over the past 20 minutes, ", w_name[0], "has received the most stock gains of", w_vals[0], "%")
+    elif response=='skip':
+        print()
     
-    print("\n 5. Top stock losses :(")
-    if input("Current losses"):
+    print("\n 5. Top stock losses :( [run/skip]")
+    response=input()
+    if response=="run":
+        print("Current losses")
         loss=stock_info.get_day_losers()
         l_vals=loss.loc[:,"% Change"]
         l_name=loss.loc[:,"Symbol"]
         print("Over the past 20 minutes, ", l_name[0], "has received the most stock losses of", l_vals[0], "%")
- #   else: 
- #       print("Must type in all lowercase for the command to be read properly.")
-     ''' 
+    elif response=='skip':
+        print() 
 
 #    return todays_data['Close'][0]
 
