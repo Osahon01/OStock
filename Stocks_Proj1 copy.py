@@ -3,7 +3,7 @@
 """
 Created on Tue Jul 27 00:23:43 2021
 
-@author: osahonodiase
+@author: osahon
 """
 import yfinance as y_fin
 import datetime
