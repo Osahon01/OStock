@@ -27,7 +27,7 @@ startDate = datetime.datetime(2021, 7, 1)
 today = date.today()
 print("Welcome to OStock-bot! \n Menu overview: \n 1. Current stock price!! \n 2. Should I sell? \n 3. Should I invest in __ company? \n 4. Top stock gainers :) \n 5. Top stock losers :( ")
 
-print('\033[1m' + Fore.YELLOW + '\nImportant Note: \nPlease write all commands in lowercase; for company symbols, please make sure to correctly type in the symbol. Press [enter] to run' + '\033[0m')
+print('\033[1m' + Fore.YELLOW + '\nImportant Note: \nPlease write all commands in lowercase; for company symbols, please make sure to correctly type in the symbol' + '\033[0m')
 print(Style.RESET_ALL)
 
 print(" \n 1. Current stock price!! [run/skip]: ")
@@ -40,6 +40,8 @@ elif response =='skip':
     print()
         
 def get_current_price(symbol):
+    
+    
     ticker = y_fin.Ticker(symbol)
     
     
