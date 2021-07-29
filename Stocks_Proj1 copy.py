@@ -9,8 +9,9 @@ import datetime
 from datetime import date
 
 from yahoo_fin import stock_info
-import turtle
+from colorama import Fore, Back, Style
 
+import turtle
 
 window = turtle.Screen()
 window.bgcolor('black')
@@ -24,9 +25,14 @@ stock = y_fin.Ticker("ABEV3.SA")
 data = stock.info
 startDate = datetime.datetime(2021, 7, 1)
 today = date.today()
-print("Welcome to the OStock-bot! \n Menu overview: \n 1. Current stock price!! \n 2. Should I sell? \n 3. Should I invest in __ company? \n 4. Top stock gainers :) \n 5. Top stock losses :( ")
- 
+print("Welcome to OStock-bot! \n Menu overview: \n 1. Current stock price!! \n 2. Should I sell? \n 3. Should I invest in __ company? \n 4. Top stock gainers :) \n 5. Top stock losers :( ")
+
+print('\033[1m' + Fore.YELLOW + '\nImportant Note: \nPlease write all commands in lowercase; for company symbols, please make sure to correctly type in the symbol' + '\033[0m')
+print(Style.RESET_ALL)
+
 print(" \n 1. Current stock price!!\nPlease input the symbol for the stock you are inquiring about:")
+
+
 
 def get_current_price(symbol):
     ticker = y_fin.Ticker(symbol)
@@ -83,7 +89,7 @@ def get_current_price(symbol):
         print()
     
     
-    print("\n 5. Top stock losses :( [run/skip]")
+    print("\n 5. Top stock losers :( [run/skip]")
     response=input()
     if response=="run":
         print("\nCurrent losses")
