@@ -18,7 +18,7 @@ window.bgcolor('black')
 logo = turtle.Turtle()
 logo.color("grey")
 font_i = ('SF Pro', 80, 'bold')
-logo.write("OStock-bot", font=font_i, align='center')
+logo.write("0Stock-bot", font=font_i, align='center')
 
 
 stock = y_fin.Ticker("ABEV3.SA")
@@ -30,7 +30,6 @@ print("Welcome to OStock-bot! \n Menu overview: \n 1. Current stock price!! \n 2
 print('\033[1m' + Fore.YELLOW + '\nImportant Note: \nPlease write all commands in lowercase; for company symbols, please make sure to correctly type in the symbol' + '\033[0m')
 print(Style.RESET_ALL)
 
-print(" \n 1. Current stock price!!\nPlease input the symbol for the stock you are inquiring about:")
 
 
 
@@ -39,6 +38,13 @@ def get_current_price(symbol):
     
     print(" \n Here is the current stock price for the company you were inquiring about:", "$", ticker.info["currentPrice"])
     print("\n")
+    
+    print(" \n 1. Current stock price!! [run/skip]")
+    response = input()
+    if response =='run':
+        print("\nPlease input the symbol for the stock you are inquiring about:")
+    elif response=='skip':
+        print()
     
     
     print(" 2. Should I sell? [run/skip]: ")
@@ -104,5 +110,5 @@ def get_current_price(symbol):
 
 #    return todays_data['Close'][0]
     print("\n \n    You'll make a lot of gains using OStock-bot!")
-
+turtle.done()
 get_current_price(input())
