@@ -18,7 +18,7 @@ window.bgcolor('black')
 logo = turtle.Turtle()
 logo.color("grey")
 font_i = ('SF Pro', 80, 'bold')
-logo.write("0Stock-bot", font=font_i, align='center')
+logo.write("OStock-bot", font=font_i, align='center')
 
 
 stock = y_fin.Ticker("ABEV3.SA")
@@ -27,27 +27,30 @@ startDate = datetime.datetime(2021, 7, 1)
 today = date.today()
 print("Welcome to OStock-bot! \n Menu overview: \n 1. Current stock price!! \n 2. Should I sell? \n 3. Should I invest in __ company? \n 4. Top stock gainers :) \n 5. Top stock losers :( ")
 
-print('\033[1m' + Fore.YELLOW + '\nImportant Note: \nPlease write all commands in lowercase; for company symbols, please make sure to correctly type in the symbol' + '\033[0m')
+print('\033[1m' + Fore.YELLOW + '\nImportant Note: \nPlease write all commands in lowercase; for company symbols, please make sure to correctly type in the symbol. Press [enter] to run' + '\033[0m')
 print(Style.RESET_ALL)
 
-
-
-
+print(" \n 1. Current stock price!! [run/skip]: ")
+x=1
+response = input()
+if response=='run':
+    print("\nPlease input the symbol for the stock you are inquiring about: ")
+    x+=1
+elif response =='skip':
+    print()
+        
 def get_current_price(symbol):
     ticker = y_fin.Ticker(symbol)
     
-    print(" \n Here is the current stock price for the company you were inquiring about:", "$", ticker.info["currentPrice"])
-    print("\n")
     
-    print(" \n 1. Current stock price!! [run/skip]")
-    response = input()
-    if response =='run':
-        print("\nPlease input the symbol for the stock you are inquiring about:")
-    elif response=='skip':
+    if x==2:
+        print(" \n Here is the current stock price for the company you were inquiring about:", "$", ticker.info["currentPrice"])
+    else:
         print()
+
     
     
-    print(" 2. Should I sell? [run/skip]: ")
+    print(" \n 2. Should I sell? [run/skip]: ")
     response = input()
     if response=="run":
         print(" \nPlease type in the symbol of the company: ")  
@@ -59,9 +62,9 @@ def get_current_price(symbol):
         g_l=(float(c_price) - float(b_price))
         
         if float(c_price) < float(b_price):
-             print(" \nOStock-bot advises you to either closely monitor this stock or consider buying the dip. You have lost {} dollars so far.".format(g_l))
+             print(" \n \nOStock-bot advises you to either closely monitor this stock or consider buying the dip. You have lost {} dollars so far.".format(g_l))
         else:
-             print(" \nOStock-bot advises you to sell to secure a profit, or allow the stock to continue to grow. You have gained {} dollars so far.".format(g_l))            
+             print(" \n \nOStock-bot advises you to sell to secure a profit, or allow the stock to continue to grow. You have gained {} dollars so far.".format(g_l))            
     elif response=='skip':
         print()
 
@@ -72,7 +75,6 @@ def get_current_price(symbol):
     if response=="run":
         print(" \nPlease type in the symbol of the company: ")  
         symbol3 = input()
-        #print(y_fin.Ticker(symbol3).info)
         q_change = y_fin.Ticker(symbol3).info['revenueGrowth']
         per_change = (q_change*100)
         if float(per_change) < 50:
@@ -105,10 +107,7 @@ def get_current_price(symbol):
         print(" \nOver the past 20 minutes, ", l_name[0], "has received the most stock losses of", l_vals[0], "%")
     elif response=='skip':
         print() 
-    #   else: 
- #       print("Must type in all lowercase for the command to be read properly.")
 
-#    return todays_data['Close'][0]
     print("\n \n    You'll make a lot of gains using OStock-bot!")
-turtle.done()
+    
 get_current_price(input())
