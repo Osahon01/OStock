@@ -9,7 +9,7 @@ import datetime
 from datetime import date
 
 from yahoo_fin import stock_info
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 
 import turtle
 
